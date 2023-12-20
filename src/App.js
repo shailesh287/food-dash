@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+// import { Toaster } from "react-hot-toast";
+// import { Outlet, useLocation } from "react-router-dom";
+// import Footer from "./components/Footer";
+// import { useLayoutEffect } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { closeMenu } from './features/app/appSlice';
+import { Outlet } from "react-router-dom";
+import Header from "./Components/Header";
+import useOnlineStatus from "./Hooks/useOnlineStatus";
 
-function App() {
+const App = () => {
+  // const { pathname } = useLocation();
+  const isOnline = useOnlineStatus();
+  // const { isMenuOpen } = useSelector((state) => state.app);
+  // const dispatch = useDispatch();
+
+  // useLayoutEffect(() => {
+  //   window.scrollTo(0, 0);
+
+  //   // close menu, if open
+  //   isMenuOpen && dispatch(closeMenu());
+  // }, [pathname]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {isOnline ? (
+        <>
+          {/* <Toaster /> */}
+          <Header />
+          <Outlet />
+          {/* <Footer /> */}
+        </>
+      ) : (
+        <div className="flex flex-col justify-center items-center min-h-screen">
+          <h1 className="text-4xl font-bold">Oops! Connection lost</h1>
+          <p>
+            Looks like you're offline, please check your internet connection.
+          </p>
+        </div>
+      )}
+    </>
   );
-}
+};
 
 export default App;
