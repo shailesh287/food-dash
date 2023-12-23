@@ -62,7 +62,7 @@ const FoodList = ({ isLoading, foods }) => {
       </div>
 
       {isLoading ? (
-        <div className="flex gap-4 md:gap-10 mb-8">
+        <div className="flex gap-10 md:gap-14 mb-8">
           {Array.from({ length: 8 }).map((_, i) => (
             <ShimmerFoodList key={i} />
           ))}

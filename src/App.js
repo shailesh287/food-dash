@@ -7,6 +7,7 @@
 import { Outlet } from "react-router-dom";
 import Header from "./Components/Header";
 import useOnlineStatus from "./Hooks/useOnlineStatus";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   // const { pathname } = useLocation();
@@ -25,7 +26,7 @@ const App = () => {
     <>
       {isOnline ? (
         <>
-          {/* <Toaster /> */}
+          <Toaster />
           <Header />
           <Outlet />
           {/* <Footer /> */}

@@ -14,13 +14,16 @@ import { useState } from "react";
 import LocateModal from "./LocateModal";
 import { useSelector } from "react-redux";
 import { selectAddress } from "../Redux/adressSlice";
+import { selectItemsInCart } from "../Redux/cartSlice";
 
 const Header = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [isLocateModalOpen, setIsLocateModalOpen] = useState(false);
 
   const { address } = useSelector(selectAddress);
+  const items = useSelector(selectItemsInCart);
 
+  console.log(items, "----------lllllllllll");
   const handleToggleMenu = () => {
     setOpenMenu(!openMenu);
   };
@@ -98,7 +101,7 @@ const Header = () => {
               <p className="hidden md:block">Cart</p>
               {
                 <p className="absolute -top-1 -right-1 bg-orange-500 text-white flex justify-center items-center w-5 h-5 text-xs rounded-full">
-                  {/* {items.length} */}0
+                  {items.length ? items.length : 0}
                 </p>
               }
             </Link>

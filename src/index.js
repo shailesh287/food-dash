@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
@@ -9,6 +9,9 @@ import About from "./Pages/About";
 import { Provider } from "react-redux";
 import appStore from "./Redux/appStore";
 import Error from "./Pages/Error";
+import Contact from "./Pages/Contact";
+import Cart from "./Pages/Cart";
+import Restaurant from "./Pages/Restaurant";
 
 const appRouter = createBrowserRouter([
   {
@@ -27,26 +30,26 @@ const appRouter = createBrowserRouter([
         path: "about",
         element: <About />,
       },
-      // {
-      //   path: 'cart',
-      //   element: <Cart />,
-      // },
-      // {
-      //   path: 'contact',
-      //   element: (
-      //     <Suspense fallback={<h1>Loading...</h1>}>
-      //       <Contact />
-      //     </Suspense>
-      //   ),
-      // },
+      {
+        path: "cart",
+        element: <Cart />,
+      },
+      {
+        path: "contact",
+        element: (
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <Contact />
+          </Suspense>
+        ),
+      },
       // {
       //   path: 'login',
       //   element: <Login />,
       // },
-      // {
-      //   path: 'restaurants/:id',
-      //   element: <Restaurant />,
-      // },
+      {
+        path: "restaurants/:id",
+        element: <Restaurant />,
+      },
     ],
     errorElement: <Error />,
   },

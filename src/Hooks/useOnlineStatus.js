@@ -6,7 +6,7 @@ const useOnlineStatus = () => {
   const updateOnlineStatus = () => {
     setOnlineStatus(navigator.onLine);
   };
-
+  console.log(onlineStatus, "-mmm");
   useEffect(() => {
     window.addEventListener("online", updateOnlineStatus);
     window.addEventListener("offline", updateOnlineStatus);

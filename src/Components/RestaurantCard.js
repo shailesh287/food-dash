@@ -3,7 +3,6 @@ import { CDN_URL } from "../Utils/constant";
 
 const RestaurantCard = ({ restaurant }) => {
   const { info } = restaurant;
-  console.log(info, "==info");
 
   return (
     <>
