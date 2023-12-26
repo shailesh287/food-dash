@@ -23,7 +23,6 @@ const Header = () => {
   const { address } = useSelector(selectAddress);
   const items = useSelector(selectItemsInCart);
 
-  console.log(items, "----------lllllllllll");
   const handleToggleMenu = () => {
     setOpenMenu(!openMenu);
   };

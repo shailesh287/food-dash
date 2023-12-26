@@ -56,7 +56,6 @@ const useRestaurants = (url) => {
   useEffect(() => {
     getRestaurants();
   }, [address.city]);
-  console.log(restaurants, "========");
   return {
     banners,
     foods,

@@ -1,7 +1,5 @@
-import React from "react";
-
 const Search = () => {
-  return <div>search kkkkkkkkkkkkk</div>;
+  return <div className="container-max">Search</div>;
 };
 
 export default Search;

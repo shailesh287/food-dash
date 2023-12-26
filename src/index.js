@@ -42,10 +42,6 @@ const appRouter = createBrowserRouter([
           </Suspense>
         ),
       },
-      // {
-      //   path: 'login',
-      //   element: <Login />,
-      // },
       {
         path: "restaurants/:id",
         element: <Restaurant />,

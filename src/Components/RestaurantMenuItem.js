@@ -1,18 +1,30 @@
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/solid";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CDN_URL } from "../Utils/constant";
-import { addtoCart } from "../Redux/cartSlice";
+import {
+  addtoCart,
+  decreaseItemQuantity,
+  increaseItemQuantity,
+  selectItemsInCart,
+} from "../Redux/cartSlice";
 import toast from "react-hot-toast";
 
 const RestaurantMenuItem = ({ items, index, activeIndex, setActiveIndex }) => {
-  // console.log(activeIndex, index);
-  // console.log(items?.card?.card?.itemCards);
   const dispatch = useDispatch();
+
+  const decreaseQuantity = (id) => dispatch(decreaseItemQuantity({ id }));
+  const increaseQuantity = (id) => dispatch(increaseItemQuantity({ id }));
 
   const handleAddToCart = (item) => {
     dispatch(addtoCart(item));
     toast.success("Added to cart!");
   };
+
+  const cartItem = useSelector(selectItemsInCart);
+  let itemList;
+  if (cartItem) {
+    itemList = cartItem.map((item) => item.item.card.info.id);
+  }
   let Cards =
     items.card.card?.itemCards || items.card.card?.categories[0]?.itemCards;
 
@@ -49,12 +61,19 @@ const RestaurantMenuItem = ({ items, index, activeIndex, setActiveIndex }) => {
           {Cards.map((item, i) => {
             const itemPrice =
               item?.card?.info?.price || item?.card?.info?.defaultPrice;
-            const endIndex = (item?.card?.info?.description).indexOf("\n");
-            console.log(endIndex);
-            const description = (item?.card?.info?.description).slice(
-              0,
-              endIndex
-            );
+            const endIndex = item?.card?.info?.description
+              ? (item?.card?.info?.description).indexOf("\n")
+              : -1;
+            const description =
+              endIndex === -1
+                ? item?.card?.info?.description
+                : (item?.card?.info?.description).slice(0, endIndex);
+
+            const isItemInCart = cartItem
+              ? cartItem.find(
+                  (items) => items.item.card?.info?.id == item?.card?.info?.id
+                )
+              : null;
             return (
               <li
                 className="p-2 py-8 flex gap-4 md:gap-8 justify-between items-center border-b"
@@ -76,12 +95,36 @@ const RestaurantMenuItem = ({ items, index, activeIndex, setActiveIndex }) => {
                     src={CDN_URL + item?.card?.info?.imageId}
                     alt=""
                   />
-                  <button
-                    onClick={() => handleAddToCart({ ...item, itemPrice })}
-                    className="bg-white text-orange-500 hover:bg-orange-500 hover:text-white font-bold p-2 px-6 rounded-md absolute shadow-md left-[50%] -bottom-5 -translate-x-[50%]"
-                  >
-                    ADD
-                  </button>
+                  {isItemInCart ? (
+                    <>
+                      <div className=" w-[90px] bg-white flex justify-between border-2 rounded-md  absolute shadow-md left-[50%] -bottom-5 -translate-x-[50%]">
+                        <button
+                          onClick={() => decreaseQuantity(item?.card?.info?.id)}
+                          className={
+                            " text-gray-400 font-bold w-8 h-8 rounded-md text-3xl leading-[2px]"
+                          }
+                        >
+                          -
+                        </button>
+                        <p className="font-bold w-8 h-8 flex justify-center items-center text-orange-500 ">
+                          {isItemInCart?.quantity}
+                        </p>
+                        <button
+                          onClick={() => increaseQuantity(item?.card?.info?.id)}
+                          className=" disabled:text-gray-500/50 disabled:cursor-not-allowed text-orange-500 font-bold w-8 h-8 rounded-md text-2xl leading-[2px]"
+                        >
+                          +
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    <button
+                      onClick={() => handleAddToCart({ ...item, itemPrice })}
+                      className="bg-white text-orange-500 hover:bg-orange-500 hover:text-white font-bold p-2 px-6 rounded-md absolute shadow-md left-[50%] -bottom-5 -translate-x-[50%]"
+                    >
+                      ADD
+                    </button>
+                  )}
                 </div>
               </li>
             );

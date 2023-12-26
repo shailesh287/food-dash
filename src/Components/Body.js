@@ -4,11 +4,30 @@ import FoodList from "./FoodList";
 import RestaurantList from "./RestaurantList";
 import { RESTAURANT_URL } from "../Utils/constant";
 import useRestaurants from "../Hooks/useRestaurant";
+import { useEffect, useRef, useState } from "react";
 
 const Body = () => {
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+
   const { banners, foods, restaurants, isLoading } =
     useRestaurants(RESTAURANT_URL);
-  console.log(restaurants, "----");
+  const searchRef = useRef();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+
+    setFilteredRestaurants(
+      restaurants.filter((rest) =>
+        rest.info.name
+          .toLowerCase()
+          .includes(searchRef.current.value.toLowerCase())
+      )
+    );
+  };
+
+  useEffect(() => {
+    setFilteredRestaurants(restaurants);
+  }, [isLoading]);
 
   return (
     <>
@@ -19,13 +38,17 @@ const Body = () => {
         {/* food list */}
         <FoodList foods={foods} isLoading={isLoading} />
         {/* search bar */}
-        <form className="flex gap-2 md:gap-4 max-w-[560px] w-[90%] mx-auto mt-6">
+        <form
+          onSubmit={handleSearch}
+          className="flex gap-2 md:gap-4 max-w-[560px] w-[90%] mx-auto mt-6"
+        >
           <input
             type="search"
             name="search"
             id="search"
-            placeholder="Search for Chicken Biriyani"
+            placeholder="Search for Restaurants"
             className="p-2 px-4 rounded-md border outline-none focus-within:border-orange-400 border-gray-200 grow w-full"
+            ref={searchRef}
           />
           <button
             type="submit"
@@ -36,7 +59,10 @@ const Body = () => {
           </button>
         </form>
         {/* restaurant list */}
-        <RestaurantList isLoading={isLoading} restaurants={restaurants} />
+        <RestaurantList
+          isLoading={isLoading}
+          restaurants={filteredRestaurants}
+        />
       </div>
     </>
   );

@@ -12,7 +12,6 @@ const BannerList = ({ isLoading, banners }) => {
   const [sliderRef, instanceRef] = useKeenSlider({
     mode: "free",
     slideChanged(slider) {
-      console.log("callled");
       setCurrentSlide(slider.track.details.rel);
     },
     breakpoints: {

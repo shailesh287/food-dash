@@ -3,7 +3,6 @@ import RestaurantCard, { withTopRatedLabel } from "./RestaurantCard";
 import ShimmerCards from "./ShimmerCards";
 
 const RestaurantList = ({ isLoading, restaurants }) => {
-  console.log(restaurants, isLoading, "---restaurants");
   const RestaurantCardTopRated = withTopRatedLabel(RestaurantCard);
 
   return (

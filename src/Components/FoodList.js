@@ -13,7 +13,6 @@ const FoodList = ({ isLoading, foods }) => {
   const [sliderRef, instanceRef] = useKeenSlider({
     mode: "free",
     slideChanged(slider) {
-      console.log("callled");
       setCurrentSlide(slider.track.details.rel);
     },
     breakpoints: {
@@ -28,6 +27,7 @@ const FoodList = ({ isLoading, foods }) => {
       },
     },
   });
+
   if (!foods) {
     return null;
   }

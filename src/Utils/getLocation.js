@@ -5,8 +5,6 @@ export async function getLocation() {
         navigator.geolocation.getCurrentPosition(resolve, reject);
       });
 
-      // console.log(position);
-
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
 
@@ -15,11 +13,6 @@ export async function getLocation() {
       );
 
       const data = await res.json();
-
-      console.log(data, "=============");
-
-      //   console.log('Latitude: ' + latitude);
-      //   console.log('Longitude: ' + longitude);
 
       return { longitude, latitude, city: data.address?.city };
     } else {
