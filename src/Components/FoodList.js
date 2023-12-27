@@ -1,4 +1,3 @@
-import Banner from "./Banner";
 import { useKeenSlider } from "keen-slider/react";
 import {
   ArrowLongLeftIcon,
@@ -31,12 +30,14 @@ const FoodList = ({ isLoading, foods }) => {
   if (!foods) {
     return null;
   }
-
+  console.log(window.location, "==========");
   return (
-    <div className="container-max overflow-hidden  my-6 mt-8">
+    <div className="container-max overflow-hidden border-b border-gray-300 my-6 mt-8">
       <div className="flex justify-between items-center mb-4">
         <h1 className="font-bold text-2xl text-zinc-700">
-          {foods?.card?.card?.header?.title}
+          {window.location.pathname == "/search"
+            ? "Popular Cuisines"
+            : foods?.card?.card?.header?.title}
         </h1>
         {!isLoading && (
           <div className="flex gap-2 items-center">

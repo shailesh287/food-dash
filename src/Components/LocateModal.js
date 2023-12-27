@@ -1,13 +1,11 @@
 import { ArrowPathIcon, MapPinIcon } from "@heroicons/react/24/solid";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { getLocation } from "../Utils/getLocation";
 import { setAddress } from "../Redux/adressSlice";
 import { useDispatch } from "react-redux";
 
 const LocateModal = (props) => {
-  const modalRef = useRef();
   const [isLoading, setisLoading] = useState(false);
-  //   const { triggerGetRestaurants } = useRestaurants(GET_RESTAURANTS_URL);
   const dispatch = useDispatch();
 
   const getGeoLocation = async () => {
@@ -22,11 +20,7 @@ const LocateModal = (props) => {
       dispatch(setAddress(res));
 
       // close modal
-      //   dispatch(closeLocationModal());
       props.closeModal();
-
-      // trigger fetch request
-      //   triggerGetRestaurants();
     } catch (error) {
       console.log(error);
     }

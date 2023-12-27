@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
+import emptyCart from "../Images/emptyCart.avif";
 
 import {
   decreaseItemQuantity,
@@ -7,6 +8,7 @@ import {
   selectItemsInCart,
 } from "../Redux/cartSlice";
 import { CDN_URL } from "../Utils/constant";
+import { Link } from "react-router-dom";
 
 const CartItems = () => {
   const cartItems = useSelector(selectItemsInCart);
@@ -18,8 +20,27 @@ const CartItems = () => {
 
   if (cartItems.length === 0) {
     return (
-      <div className="flex grow min-h-[60vh] justify-center items-center">
-        <p>Your cart is empty!</p>
+      <div className=" ">
+        <div className="flex flex-col items-center justify-between mb-12">
+          <div>
+            <img className="w-80 h-72 my-5" src={emptyCart} alt="empty-cart" />
+          </div>
+          <div style={{ color: "#535665" }} className="text-xl font-semibold">
+            Your cart is empty
+          </div>
+          <div style={{ color: "#7E808C" }} className="text-sm my-2">
+            You can go to home page to view more restaurants
+          </div>
+          <div className="my-5">
+            <Link
+              to="/"
+              style={{ backgroundColor: "#FC8019" }}
+              className="text-white p-3 font-semibold"
+            >
+              SEE RESTAURANTS NEAR YOU
+            </Link>
+          </div>
+        </div>
       </div>
     );
   }

@@ -6,7 +6,7 @@ const RestaurantList = ({ isLoading, restaurants }) => {
   const RestaurantCardTopRated = withTopRatedLabel(RestaurantCard);
 
   return (
-    <div className="container-max">
+    <div className="container-max border-b border-gray-300 mb-7 pb-7 ">
       <h1 className="my-4 mt-8 font-bold text-2xl text-zinc-700">
         Restaurants near you
       </h1>

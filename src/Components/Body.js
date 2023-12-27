@@ -5,12 +5,12 @@ import RestaurantList from "./RestaurantList";
 import { RESTAURANT_URL } from "../Utils/constant";
 import useRestaurants from "../Hooks/useRestaurant";
 import { useEffect, useRef, useState } from "react";
+import Footer from "./Footer";
 
 const Body = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
-  const { banners, foods, restaurants, isLoading } =
-    useRestaurants(RESTAURANT_URL);
+  const { banners, foods, restaurants, appInfo, isLoading } = useRestaurants();
   const searchRef = useRef();
 
   const handleSearch = (e) => {
@@ -31,7 +31,7 @@ const Body = () => {
 
   return (
     <>
-      <div className="bg-white relative py-8">
+      <div className="bg-white relative pt-8">
         {/* banners */}
         <BannerList banners={banners} isLoading={isLoading} />
 
@@ -63,6 +63,7 @@ const Body = () => {
           isLoading={isLoading}
           restaurants={filteredRestaurants}
         />
+        {isLoading ? <div></div> : <Footer appInfo={appInfo} />}
       </div>
     </>
   );

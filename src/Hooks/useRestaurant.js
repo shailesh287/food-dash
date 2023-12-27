@@ -9,6 +9,7 @@ const useRestaurants = (url) => {
   const [foods, setFoods] = useState([]);
   const [topRestaurants, setTopRestaurants] = useState([]);
   const [restaurants, setRestaurants] = useState([]);
+  const [appInfo, setAppInfo] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -18,7 +19,12 @@ const useRestaurants = (url) => {
 
     try {
       setIsLoading(true);
-      const { data } = await axios.post(url, address);
+      const { data } = await axios.get(
+        "https://corsproxy.org/?" +
+          encodeURIComponent(
+            `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${address.latitude}&lng=${address.longitude}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
+          )
+      );
 
       if (data?.data) {
         setBanners(
@@ -38,11 +44,15 @@ const useRestaurants = (url) => {
             (items) => items?.card?.card?.id === "top_brands_for_you"
           )[0]
         );
-
         setRestaurants(
           data?.data?.cards.filter(
             (items) => items?.card?.card?.id === "restaurant_grid_listing"
           )[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+        );
+        setAppInfo(
+          data?.data?.cards.filter(
+            (items) => items?.card?.card?.id === "app_install_links"
+          )[0]?.card?.card
         );
       }
     } catch (err) {
@@ -62,6 +72,7 @@ const useRestaurants = (url) => {
     topRestaurants,
     restaurants,
     isLoading,
+    appInfo,
     error,
     triggerGetRestaurants: () => {
       return getRestaurants();

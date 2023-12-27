@@ -10,17 +10,7 @@ import useOnlineStatus from "./Hooks/useOnlineStatus";
 import { Toaster } from "react-hot-toast";
 
 const App = () => {
-  // const { pathname } = useLocation();
   const isOnline = useOnlineStatus();
-  // const { isMenuOpen } = useSelector((state) => state.app);
-  // const dispatch = useDispatch();
-
-  // useLayoutEffect(() => {
-  //   window.scrollTo(0, 0);
-
-  //   // close menu, if open
-  //   isMenuOpen && dispatch(closeMenu());
-  // }, [pathname]);
 
   return (
     <>
@@ -29,7 +19,6 @@ const App = () => {
           <Toaster />
           <Header />
           <Outlet />
-          {/* <Footer /> */}
         </>
       ) : (
         <div className="flex flex-col justify-center items-center min-h-screen">
