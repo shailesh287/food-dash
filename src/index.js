@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
@@ -9,9 +9,10 @@ import About from "./Pages/About";
 import { Provider } from "react-redux";
 import appStore from "./Redux/appStore";
 import Error from "./Pages/Error";
-import Contact from "./Pages/Contact";
 import Cart from "./Pages/Cart";
 import Restaurant from "./Pages/Restaurant";
+
+const Contact = lazy(() => import("./Pages/Contact"));
 
 const appRouter = createBrowserRouter([
   {

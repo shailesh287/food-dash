@@ -8,6 +8,7 @@ import FoodItem from "./FoodItem";
 import ShimmerFoodList from "./ShimmerFoodList";
 
 const FoodList = ({ isLoading, foods }) => {
+  console.log(foods, "ppppppppfoods");
   const [currentSlide, setCurrentSlide] = useState(0);
   const [sliderRef, instanceRef] = useKeenSlider({
     mode: "free",
@@ -30,7 +31,6 @@ const FoodList = ({ isLoading, foods }) => {
   if (!foods) {
     return null;
   }
-  console.log(window.location, "==========");
   return (
     <div className="container-max overflow-hidden border-b border-gray-300 my-6 mt-8">
       <div className="flex justify-between items-center mb-4">
@@ -63,11 +63,7 @@ const FoodList = ({ isLoading, foods }) => {
       </div>
 
       {isLoading ? (
-        <div className="flex gap-10 md:gap-14 mb-8">
-          {Array.from({ length: 8 }).map((_, i) => (
-            <ShimmerFoodList key={i} />
-          ))}
-        </div>
+        <div></div>
       ) : (
         <div ref={sliderRef} className="keen-slider flex">
           {foods?.card?.card?.gridElements?.infoWithStyle?.info?.map((food) => (

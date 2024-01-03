@@ -2,7 +2,6 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import BannerList from "./BannerList";
 import FoodList from "./FoodList";
 import RestaurantList from "./RestaurantList";
-import { RESTAURANT_URL } from "../Utils/constant";
 import useRestaurants from "../Hooks/useRestaurant";
 import { useEffect, useRef, useState } from "react";
 import Footer from "./Footer";

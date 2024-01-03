@@ -57,3 +57,48 @@ html {
   .logo {
     font-family: 'Kaushan Script', cursive;
   }
+
+  
+
+  .loader {
+    background: linear-gradient(180deg,#ecebeb,hsla(0,3%,92%,.51) 53%,hsla(0,3%,92%,0));
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    justify-content: center;
+    animation: _2NjOP 2s infinite;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    
+  }
+  
+  @keyframes _2NjOP {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .loader ::after {
+    position: absolute;
+    display: block;
+    top: 4px;
+    left: 4px;
+    width: 72px;
+    height: 72px;
+    content: "";
+    background-color: #171a29;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+.loader-container, .loader {
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+
+
+
+
+

@@ -31,12 +31,12 @@ const BannerList = ({ isLoading, banners }) => {
   }
 
   return (
-    <div className="container-max overflow-hidden">
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="font-bold text-2xl text-zinc-700">
-          Best offers for you
-        </h1>
-        {!isLoading && (
+    <div className=" overflow-hidden">
+      {!isLoading && (
+        <div className="flex justify-between items-center mb-4">
+          <h1 className="font-bold text-2xl text-zinc-700">
+            Best offers for you
+          </h1>
           <div className="flex gap-2 items-center">
             <button
               disabled={currentSlide === 0}
@@ -56,14 +56,12 @@ const BannerList = ({ isLoading, banners }) => {
               <ArrowLongRightIcon className="w-4 h-4" />{" "}
             </button>
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
       {isLoading ? (
-        <div className="flex gap-4 md:gap-8 mb-8">
-          {Array.from({ length: 3 }).map((_, i) => (
-            <ShimmerBanner key={i} />
-          ))}
+        <div className="w-full">
+          <ShimmerBanner />
         </div>
       ) : (
         <div ref={sliderRef} className="keen-slider flex">

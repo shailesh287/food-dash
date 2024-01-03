@@ -18,17 +18,17 @@ const RestaurantCard = ({ restaurant }) => {
               ? info.aggregatedDiscountInfoV3.header
               : ""}{" "}
             {info?.aggregatedDiscountInfoV3?.subHeader
-              ? info.aggregatedDiscountInfoV3.subHeader
+              ? info?.aggregatedDiscountInfoV3?.subHeader
               : ""}
           </p>
         </div>
       </div>
 
-      <h2 className="text-lg font-semibold mt-2 text-zinc-800">{info.name}</h2>
+      <h2 className="text-lg font-semibold mt-2 text-zinc-800">{info?.name}</h2>
       <div className="flex items-center gap-2">
         <StarIcon className="w-6 h-6 text-orange-400" />{" "}
         <p className="font-semibold text-gray-700 text-sm">
-          {info.avgRatingString}
+          {info?.avgRatingString}
         </p>
       </div>
 
@@ -36,12 +36,12 @@ const RestaurantCard = ({ restaurant }) => {
         {info?.cuisines?.map((c, i) => (
           <span key={i}>
             {c}
-            {i === info.cuisines.length - 1 ? "" : ", "}
+            {i === info?.cuisines.length - 1 ? "" : ", "}
           </span>
         ))}
       </p>
 
-      <p className="text-zinc-600">{info.locality}</p>
+      <p className="text-zinc-600">{info?.locality}</p>
     </>
   );
 };
