@@ -50,7 +50,7 @@ const Search = () => {
   return (
     <>
       <div className="container-max  ">
-        <div className="bg-white w-full sticky pt-[48px] pb-[8px] top-[80px] z-20">
+        <div className="bg-white w-full  pt-[48px] pb-[8px] top-[80px] z-20">
           <div className="border border-gray-300 flex justify-between p-4 ">
             <input
               className=" w-[80%] outline-none"
@@ -95,7 +95,7 @@ const Search = () => {
             ))
           ) : (
             <div className=" py-7">
-              <FoodList foods={foods} isLoading={isLoading} />;
+              <FoodList foods={foods} isLoading={isLoading} />
             </div>
           )}
         </div>

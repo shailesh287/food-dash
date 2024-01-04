@@ -1,7 +1,7 @@
 import { StarIcon } from "@heroicons/react/24/solid";
 
 const RestaurantInfo = ({ info }) => {
-  const { name, sla, areaName, totalRatingsString, avgRatingString, cuisines } =
+  const { name, areaName, totalRatingsString, avgRatingString, cuisines } =
     info;
 
   return (

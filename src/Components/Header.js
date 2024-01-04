@@ -119,6 +119,7 @@ const Header = () => {
                   <Link
                     to="/search"
                     className="p-2 md:px-4 hover:bg-gray-50 rounded-md flex items-center gap-2"
+                    onClick={handleToggleMenu}
                   >
                     <MagnifyingGlassIcon className="w-4 h-4 text-gray-700" />{" "}
                     <p>Search</p>
@@ -128,6 +129,7 @@ const Header = () => {
                   <Link
                     to="/"
                     className="p-2 md:px-4 hover:bg-gray-50 rounded-md flex items-center gap-2"
+                    onClick={handleToggleMenu}
                   >
                     <HomeIcon className="w-4 h-4 text-gray-700" /> <p>Home</p>
                   </Link>
@@ -136,6 +138,7 @@ const Header = () => {
                   <Link
                     to="/about"
                     className="p-2 md:px-4 hover:bg-gray-50 rounded-md flex items-center gap-2"
+                    onClick={handleToggleMenu}
                   >
                     <BuildingOfficeIcon className="w-4 h-4 text-gray-700" />{" "}
                     <p>About</p>
@@ -145,6 +148,7 @@ const Header = () => {
                   <Link
                     to="/contact"
                     className="p-2 md:px-4 hover:bg-gray-50 rounded-md flex items-center gap-2"
+                    onClick={handleToggleMenu}
                   >
                     <PhoneIcon className="w-4 h-4 text-gray-700" />{" "}
                     <p>Contact</p>
@@ -154,6 +158,7 @@ const Header = () => {
                   <Link
                     to="/cart"
                     className="p-2 relative md:px-4 hover:bg-gray-50 rounded-md flex items-center gap-2"
+                    onClick={handleToggleMenu}
                   >
                     <ShoppingBagIcon className="w-4 h-4 text-gray-700" />{" "}
                     <p>Cart</p>
@@ -167,8 +172,8 @@ const Header = () => {
               </ul>
 
               <button
-                // onClick={() => loginWithRedirect()}
                 className="ml-4 bg-orange-400 text-white p-2 px-4 rounded-md items-center gap-2 hidden md:flex"
+                onClick={handleToggleMenu}
               >
                 Login
               </button>
