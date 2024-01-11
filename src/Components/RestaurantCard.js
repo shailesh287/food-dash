@@ -28,7 +28,7 @@ const RestaurantCard = ({ restaurant }) => {
       <div className="flex items-center gap-2">
         <StarIcon className="w-6 h-6 text-orange-400" />{" "}
         <p className="font-semibold text-gray-700 text-sm">
-          {info?.avgRatingString}
+          {info?.avgRatingString} • {info?.sla?.slaString}
         </p>
       </div>
 

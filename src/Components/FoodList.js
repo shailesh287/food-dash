@@ -8,7 +8,6 @@ import FoodItem from "./FoodItem";
 import ShimmerFoodList from "./ShimmerFoodList";
 
 const FoodList = ({ isLoading, foods }) => {
-  console.log(foods, "ppppppppfoods");
   const [currentSlide, setCurrentSlide] = useState(0);
   const [sliderRef, instanceRef] = useKeenSlider({
     mode: "free",

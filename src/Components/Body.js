@@ -9,7 +9,8 @@ import Footer from "./Footer";
 const Body = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
-  const { banners, foods, restaurants, appInfo, isLoading } = useRestaurants();
+  const { banners, foods, restaurants, appInfo, topRestaurants, isLoading } =
+    useRestaurants();
   const searchRef = useRef();
 
   const handleSearch = (e) => {
@@ -31,11 +32,11 @@ const Body = () => {
   return (
     <>
       <div className="bg-white relative pt-8">
-        {/* banners */}
-        <BannerList banners={banners} isLoading={isLoading} />
-
         {/* food list */}
         <FoodList foods={foods} isLoading={isLoading} />
+        {/* banners */}
+        <BannerList banners={topRestaurants} isLoading={isLoading} />
+
         {/* search bar */}
         <form
           onSubmit={handleSearch}

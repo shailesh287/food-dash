@@ -6,6 +6,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import ShimmerBanner from "./ShimmerBanner";
+import { Link } from "react-router-dom";
 
 const BannerList = ({ isLoading, banners }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -31,11 +32,11 @@ const BannerList = ({ isLoading, banners }) => {
   }
 
   return (
-    <div className=" overflow-hidden">
+    <div className=" container-max overflow-hidden border-b border-gray-300 pb-12 my-6 mt-8">
       {!isLoading && (
         <div className="flex justify-between items-center mb-4">
           <h1 className="font-bold text-2xl text-zinc-700">
-            Best offers for you
+            {banners?.card?.card?.header?.title}
           </h1>
           <div className="flex gap-2 items-center">
             <button
@@ -64,10 +65,12 @@ const BannerList = ({ isLoading, banners }) => {
           <ShimmerBanner />
         </div>
       ) : (
-        <div ref={sliderRef} className="keen-slider flex">
-          {banners?.card?.card?.gridElements.infoWithStyle.info.map(
+        <div ref={sliderRef} className="keen-slider flex ">
+          {banners?.card?.card?.gridElements?.infoWithStyle?.restaurants.map(
             (banner) => (
-              <Banner banner={banner} key={banner.id} />
+              <Link to={`/restaurants/${banner.info.id}`} key={banner.id}>
+                <Banner banner={banner} key={banner.id} />
+              </Link>
             )
           )}
         </div>
